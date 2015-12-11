@@ -1,0 +1,10 @@
+{% extends "cooking_layout.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    /<a href="{% url 'cooking:cooking_index' %}">Cooking</a>/<a href="#">{% trans 'Ingredients' %}</a>
+{% endblock %}
+
+{% block content %}
+{% endblock %}

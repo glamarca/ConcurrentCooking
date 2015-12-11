@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-07 15:44+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Concurent Cooking"
+msgstr "Concurent Cooking"
+
+msgid "Welcome to Concurrent Cooking"
+msgstr "Bienvenue sur Concurrent Cooking"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Licence"
+msgstr "Licence"
+
+msgid "Page not found"
+msgstr "Page non trouvée"
+
+msgid "Cooking"
+msgstr "Cuisine"
+
+msgid "The cooking side"
+msgstr "Côté Cuisine"
+
+msgid "The IT side"
+msgstr "Côté IT"
+
+msgid "Here you can find recipe, techniques, ingredients ..."
+msgstr "Ici vous trouverez les recettes , techniques ,ingredients ..."
+
+msgid "Here lets see developpement and devops things"
+msgstr "Ici on parle programation et devops"

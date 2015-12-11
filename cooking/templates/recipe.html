@@ -1,0 +1,66 @@
+{% extends "cooking_layout.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load  enums %}
+
+{% block breadcrumb %}
+    /<a href="{% url 'cooking:cooking_index' %}">Cooking</a>
+    /<a href="{% url 'cooking:recipes_index' %}">{% trans 'Recipes' %}</a>
+    /<a href="#">{{ recipe.name }}</a>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ recipe.name }}</h1>
+    <p>{{ recipe.description }}</p>
+    {% if error_message %}
+        <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">{% trans 'Ingredients' %}</div>
+                <div class="panel-body">
+                    {% if ingredients_recipe %}
+                        <ul class="list-group">
+                            {% for ir in ingredients_recipes %}
+                                <li class="list-group-item">
+                                    <span class="badge">{{ ir.quantity }} {{ ir.measurement|get_measure }}</span>
+                                    <a href="#">{{ ingredient.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">{% trans 'Infos' %}</div>
+                <div class="panel-body">
+                    <div class="col-md-8 col-md-offset-2">
+                        <ul class="list-group">
+                            <li>{% trans 'People' %} : {{ recipe.num_people }} min</li>
+                            <li>{% trans 'Difficulty' %} : {{ recipe.difficulty }}/5</li>
+                            <li>{% trans 'Costs' %} : {{ recipe.costs }}/5</li>
+                            <li>{% trans 'Total Time' %} : {{ recipe.global_time }} min</li>
+                            <li>{% trans 'Preparartion Time' %} : {{ recipe.preparation_time }} min</li>
+                            <li>{% trans 'Waiting Time' %} : {{ recipe.waiting_time }} min</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">{% trans 'Process' %}</div>
+                <div class="panel-body">
+                    <div class="col-md-8 col-md-offset-2">
+                        <p>{{ recipe.process }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

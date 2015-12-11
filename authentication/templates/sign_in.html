@@ -1,0 +1,44 @@
+{% extends "auth_layout.html" %}
+{% load i18n %}
+
+{% block breadcrunb %}
+    /<a href="#">{% trans 'Sign In' %}</a>
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 50px">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">{% trans 'Authentication' %}</div>
+                <div class="panel-body">
+                    {% include "messages.html" %}
+                    <form class="form-horizontal" action="{% url 'authentication:do_sign_in' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="userId" class="control-label col-md-2">{% trans 'User' %}</label>
+
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="userId" placeholder="{% trans 'Username' %}"
+                                       maxlength="25" name="username" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordId" class="control-label col-md-2">{% trans 'Password' %}</label>
+
+                            <div class="col-md-10">
+                                <input type="password" class="form-control" id="passwordId"
+                                       placeholder="{% trans 'Password' %}" maxlength="25" name="password" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="text-center" style="margin: 5px">
+                                <input type="submit" class="btn btn-primary" value="{% trans 'Sign In' %}"/>
+                                <a href="#" class="btn btn-default">{% trans 'Sign Up' %}</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

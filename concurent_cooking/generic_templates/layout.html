@@ -1,0 +1,59 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% trans "Concurent Cooking" %}</title>
+    <link href="{% static "css/custom.css" %}" rel="stylesheet">
+    <link id="bootsrapId" href="{% static "css/bootstrap_united.min.css" %}" rel="stylesheet">
+    <link rel="shortcut icon" type="img/png" href="{% static "images/favicon.ico" %}">
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                {% trans 'Concurent Cooking' %}{% block app_name %}{% endblock %}
+            </a>
+        </div>
+        {% if user.is_authenticated %}
+            <div class="navbar-right" style="margin-right: 10px">
+                <a href="{% url 'authentication:logout' %}" class="navbar-brand">{% trans 'Logout' %}</a>
+            </div>
+        {% else %}
+        {% endif %}
+    </div>
+</div>
+
+<div style="padding-top : 5 px ; padding-left : 90 px ; padding-right : 10 px ;">
+    <div id="breadcrumbs">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'index' %}"><span class="glyphicon glyphicon-home"/></a></li>
+            {% block breadcrumb %}
+            {% endblock %}
+        </ol>
+    </div>
+</div>
+
+<div style="padding-left : 10px ; padding-right : 10px ;">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-left">{% trans "Contact" %}</p>
+
+        <p class="navbar-text pull-right">{% trans "Licence" %}</p>
+    </div>
+</div>
+<script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script src="{% static "js/custom.js" %}"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-07 15:44+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/recettes/index.html:11 templates/recettes/recipe_form.html:2
+msgid "Add recipe"
+msgstr "Ajouter une recette"
+
+#: templates/recettes/recipe.html:3 templates/recettes/recipe_form.html:12
+msgid "Difficulty"
+msgstr "Difficulté"
+
+#: templates/recettes/recipe.html:4
+msgid "Preparation duration"
+msgstr "Temps de préparation"
+
+#: templates/recettes/recipe.html:5 templates/recettes/recipe_form.html:18
+msgid "Ingredients"
+msgstr "Ingrédients"
+
+#: templates/recettes/recipe_form.html:9
+msgid "Main"
+msgstr "Général"
+
+#: templates/recettes/recipe_form.html:10
+#: templates/recettes/recipe_form.html:19
+#: templates/recettes/recipe_form.html:25
+msgid "Name"
+msgstr "Nom"
+
+#: templates/recettes/recipe_form.html:14
+msgid "Number of peoples"
+msgstr "Nombre de personnes"
+
+#: templates/recettes/recipe_form.html:21
+msgid "Type"
+msgstr "Type"
+
+#: templates/recettes/recipe_form.html:23
+msgid "Quantity"
+msgstr "Quantité"
+
+#: templates/recettes/recipe_form.html:29
+msgid "Add"
+msgstr "Ajouter"
+
+#: views.py:36
+msgid "A recipe with the same name already exists"
+msgstr "Une recette portant le même nom existe déjà"

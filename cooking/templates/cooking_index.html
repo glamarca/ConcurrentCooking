@@ -1,0 +1,88 @@
+{% extends "cooking_layout.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    /<a href="#">Cooking</a>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="panel panel-default" style="margin: 5px">
+                        <div class="panel-heading">{% trans 'Recipes' %}</div>
+                        <div class="panel-body">
+                            <a href="{% url 'cooking:recipes_index' %}"><img src="{% static "images/recipe.jpg" %}" class="img-rounded center-block"
+                                             alt="{% trans 'Recipes' %}" width="90%"
+                                             height="90%"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel panel-default" style="margin: 5px">
+                        <div class="panel-heading">{% trans 'Latest Recipes' %}</div>
+                        <div class="panel-body">
+                            {% if latest_recipes %}
+                                <ul>
+                                {% for recipe in latest_recipes %}
+                                    <li><a href="{% url 'cooking:recipe_details' recipe.id %}">{{ recipe.name }}</a></li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="panel panel-default" style="margin: 5px">
+                        <div class="panel-heading">{% trans 'Techniques' %}</div>
+                        <div class="panel-body">
+                            <a href="#"><img src="{% static "images/techniques.jpg" %}" class="img-rounded center-block"
+                                             alt="{% trans 'Techniques' %}" width="90%"
+                                             height="90%"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel panel-default" style="margin: 5px">
+                        <div class="panel-heading">{% trans 'Latest Techniques' %}</div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="panel panel-default" style="margin: 5px">
+                        <div class="panel-heading">{% trans 'Ingredients' %}</div>
+                        <div class="panel-body">
+                            <a href="{% url 'cooking:ingredients_index' %}"><img src="{% static "images/ingredients.jpg" %}" class="img-rounded center-block"
+                                             alt="{% trans 'Techniques' %}" width="90%"
+                                             height="90%"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel panel-default" style="margin: 5px">
+                        <div class="panel-heading">{% trans 'Latest Ingredients' %}</div>
+                        <div class="panel-body">
+                            <div class="panel-body">
+                                {% if latest_ingredients %}
+                                    <ul>
+                                        {% for ingredient in latest_ingredients %}
+                                            <li><a href="{% url 'cooking:ingredient' ingredient.id %}">{{ ingredient.name }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

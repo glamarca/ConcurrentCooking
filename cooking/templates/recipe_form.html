@@ -1,0 +1,90 @@
+{% extends "cooking_layout.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load  enums %}
+
+{% block breadcrumb %}
+    /<a href="{% url 'cooking:cooking_index' %}">Cooking</a>
+    /<a href="{% url 'cooking:recipes_index' %}">{% trans 'Recipes' %}</a>
+    /<a href="#">{{ recipe.name }}</a>
+{% endblock %}
+
+{% block content %}
+    <h1>{% if action == 'modify' %}{% trans 'Recipe Modification' %}{% else %}{% trans 'New Recipe' %}{% endif %}</h1>
+    <div class="container">
+        {% include 'messages.html' %}
+        <form action="{% url 'cooking:recipe_add_modif' %}" id="recipe_form" method="post">
+            {% csrf_token %}
+            {% if recipe %}
+                <input type="hidden" name="id" value="{{ recipe.id }}"/>
+            {% endif %}
+            <input type="hidden" value="{{ action }}" name="action"/>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="recipe_name" class="control-label">{% trans 'Name' %}</label>
+                        <input type="text" class="form-control" id="recipe_name" name="name"
+                               {% if recipe %}value="{{ recipe.name }}"{% endif %}/>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe_description" class="control-label">{% trans 'Description' %}</label>
+                        <textarea class="form-control" row="3" id="recipe_description" name="description">
+                            {% if recipe %}{{ recipe.description }}{% endif %}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe_preparation_time"
+                               class="control-label">{% trans 'Preparation Time' %}(min)</label>
+                        <input type="number" min="1" max="500" class="form-control" id="recipe_preparation_time"
+                               name="preparation_time" {% if recipe %}value="{{ recipe.preparation_time }}"{% endif %}/>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe_waiting_time" class="control-label">{% trans 'Waiting Time' %}(min)</label>
+                        <input type="number" min="1" max="500" class="form-control" id="recipe_waiting_time"
+                               name="waiting_time" {% if recipe %}value="{{ recipe.waiting_time }}"{% endif %}/>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe_global_time" class="control-label">{% trans 'Global Time' %}(min)</label>
+                        <input type="number" min="1" max="500" class="form-control" id="recipe_global_time"
+                               name="global_time" {% if recipe %}value="{{ recipe.global_time }}"{% endif %}/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="recipe_difficulty" class="control-label">{% trans 'Difficulty' %} /5</label>
+                            <input type="number" min="1" max="5" class="form-control" id="recipe_difficulty"
+                                   name="difficulty" {% if recipe %}value="{{ recipe.difficulty }}"{% endif %}/>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipe_cost" class="control-label">{% trans 'Cost' %} /5</label>
+                            <input type="number" min="1" max="5" class="form-control" id="recipe_cost" name="cost"
+                                   {% if recipe %}value="{{ recipe.costs }}"{% endif %}/>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipe_num_people" class="control-label">{% trans 'Number of people' %}</label>
+                            <input type="number" min="1" max="50" class="form-control" id="recipe_num_people"
+                                   name="num_people" {% if recipe %}value="{{ recipe.num_people }}"{% endif %}/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="recipe_process" class="control-label">{% trans 'Process' %}</label>
+                        <textarea id="recipe_process" rows="25" name="process" class="form-control">
+                            {% if recipe %}{{ recipe.process }}{% endif %}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-default" value="
+                                {% if action == 'modify' %}{% trans 'Update' %}{% else %}{% trans 'Add' %}{% endif %}"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

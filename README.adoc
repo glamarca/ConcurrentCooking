@@ -8,7 +8,7 @@ The it side contain form the moment only a bunch of RSS feed
 
 This is an ALPHA version, the remaining jobs are listed in the issues of this https://github.com/glamarca/ConcurrentCooking/issues[github repository].
 
-[Note]
+[NOTE]
 ====
 All the following bash command are made on https://getfedora.org/[Fedora]. +
 `dnf` is used as package management (>=Fedora 22) +
@@ -18,7 +18,7 @@ On https://www.debian.org/[Debian] distribution (https://www.debian.org/[Debian 
 
 == Creation and configuration of the Python VirtualEnv
 
-[Note]
+[NOTE]
 ====
 We assume that python3 and pip3 is installed.
 ====
@@ -59,7 +59,7 @@ Python 3.4.2
 pip 7.1.2 from site-packages (python 3.4)
 ----
 
-[Note]
+[NOTE]
 ====
 From here whe assume that the virtualenv will be activated and used.
 So, don't forget to activate the `ENV` before executing commands
@@ -115,10 +115,10 @@ Those scripts will discover every models of the applications that are listed in 
 
 === Initialise DB models
 
-[Note]
+[NOTE]
 ====
 For development and testing purpose , https://www.sqlite.org/[SQLite3] will be used as and embedded database. +
-If you want to clear the DB , just delete the `concurent_cooking_db` file in the project folder. It will be created by using `migrate`command. +
+If you want to clear the DB , just delete the `concurent_cooking_db` file in the project folder. It will be created by using `migrate` command. +
 For Qa or Prod purpose , see the xref:postgres_install[PostGreSQL section].
 ====
 
@@ -155,8 +155,8 @@ Running migrations:
 === Load Test Data
 
 The test data are located in the *PROJECT_PATCH/cooking/fixtures* folder. +
-Django look after script in the fixtures folders in each module.+
-These data will also be used in initialisation of the test environment.+
+Django look after script in the fixtures folders in each module. +
+These data will also be used in initialisation of the test environment. +
 The data files can be writen in json, xml and yaml.
 
 [source,bash]
@@ -200,7 +200,7 @@ Superuser created successfully.
 
 === Run the server and access to the administration console
 
-[Note]
+[NOTE]
 ====
 The `runserver`command purpose is to provide a quick django server for development.+
 To use your code on a production server , you have to use apache https://modwsgi.readthedocs.org/en/develop/[mod_wsgi] (see xref:mod_wsgi[mod_wsgi section]).
@@ -250,6 +250,149 @@ We are going to create 2 users (one for cooking , one for it), which belong to 2
 
 [[postgres_install]]
 == Install and configure PostGreSQL database
+
+First we need to install postgreSQL on the system.
+
+==== Installation
+
+[source,bash]
+----
+# Install with dnf
+# Dev package has to be installed to work with the python driver
+(VirtTest)[user@localhost PROJECT_FOLDER] $ sudo dnf install postgesql-server.x86_64 python3-devel.x86_64 postgresql-devel.x86_64 postgresql-plpython.x86_64
+
+# Initialisation
+(VirtTest)[user@localhost PROJECT_FOLDER] $ sudo postgresql-setup initdb
+
+# Start the service
+(VirtTest)[user@localhost PROJECT_FOLDER] $ sudo systemctl start postgresql.service
+
+# Optional : if you want to run the service on startup
+(VirtTest)[user@localhost PROJECT_FOLDER] $ sudo systemctl enable postgresql.service
+----
+
+==== Postgres SuperUser
+By default, a *postgres* user is created, it is the SU of postgreSQL. +
+We have to set a password to this user.
+
+[NOTE]
+====
+By default, postgreSQL use an OS user as DB user. +
+The *postgres* user was also created on the System, and you have to switch to this user to connect to postgreSQL as *postgres* user.
+
+Later we will configure the postgreSQL service to allow connection with user and password without a corresponding linux user.
+====
+
+[source,bash]
+----
+# Switch to root
+(VirtTest)[user@localhost PROJECT_FOLDER] $ sudo su
+Enter password :
+
+#Switch to posgres user
+[root@localhost PROJECT_FOLDER] $ su postgres
+[postgres@localhost PROJECT_FOLDER] $
+
+#Start postgreSQL prompt
+[postgres@localhost PROJECT_FOLDER] $ psql
+
+#You should see something like this
+could not change directory to "/root"
+Welcome to psql 8.3.1, the PostgreSQL interactive terminal.
+Type:  \copyright for distribution terms
+       \h for help with SQL commands
+       \? for help with psql commands
+       \g or terminate with semicolon to execute query
+       \q to quit
+postgres=#
+
+# Set password
+ALTER USER postgres WITH PASSWORD 'password';
+----
+
+==== Create Django user for postgreSQL
+
+[source,bash]
+----
+# Switch to root
+(VirtTest)[user@localhost PROJECT_FOLDER] $ sudo su
+Enter password :
+
+#Switch to posgres user
+[root@localhost PROJECT_FOLDER] $ su postgres
+
+bash-3.x$
+
+#Start postgreSQL prompt
+$ psql
+
+> CREATE USER django WITH PASSWORD 'password';
+> CREATE DATABASE my_db;
+> GRANT ALL PRIVILEGES ON DATABASE my_db to django;
+> \q
+----
+
+==== Configure postgres to accept user/password connection without linux user
+
+[source,bash]
+----
+# edit the file /var/lib/pgsql/data/pg_hba.conf (as root)
+[root@localhost PROJECT_FOLDER] $ vim /var/lib/pgsql/data/pg_hba.conf
+
+#¸Change those lines to set the authentification method to md5
+
+# "local" is for Unix domain socket connections only
+local   all             all                                     md5
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            md5
+# IPv6 local connections:
+host    all             all             ::1/128                 ident
+----
+
+[NOTE]
+====
+This is a example configuration. +
+To use this in a real environment , you have to grant acces using user/password only from accepted IP/network.
+====
+
+
+==== Configure Django to use PostgreSQL
+https://docs.djangoproject.com/fr/1.9/ref/databases/#postgresql-notes[Django PostgreSQL documentation]
+
+===== Install psycopg2
+http://initd.org/psycopg/[psycopg2] is the python driver to use postgeSQL db.
+
+[source,bash]
+----
+(VirtTest)[user@localhost VirtTest] $ pip3 install psycopg2
+Collecting psycopg2
+Installing collected packages: psycopg2
+Successfully installed psycopg2-2.6.1
+----
+
+===== Configure the settings.py
+
+[source,python]
+----
+import psycopg2.extensions
+
+# Database
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME' : 'my_db',
+        'USER' : 'django',
+        'PASSWORD' : 'password',
+        'HOST' : 'localhost',
+        'PORT' : '',
+        'OPTIONS': {
+            'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
+            },
+    }
+}
+----
 
 [[mod_wsgi]]
 == Deployement using mod_wsgi

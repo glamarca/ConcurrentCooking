@@ -108,12 +108,19 @@ This user will be used to access the administration module and managing group an
 (VirtTest)[user@localhost PROJECT_FOLDER] $ python ./admin.py createsuperuser
 ----
 
-== Database initialisation and Test data loading
+== Database initialisation and Presentation/Test data loading
 
 We are going to use the `makemigration` and `migrate` command from `manage.py` to initialise the database with the default models (auth,admin,...) and the models written int the applications. +
 Those scripts will discover every models of the applications that are listed in `INSTALLED_APPS` from the `settings.py`
 
 === Initialise DB models
+
+[Note]
+====
+For development and testing purpose , https://www.sqlite.org/[SQLite3] will be used as and embedded database. +
+If you want to clear the DB , just delete the `concurent_cooking_db` file in the project folder. It will be created by using `migrate`command. +
+For Qa or Prod purpose , see the xref:postgres_install[PostGreSQL section].
+====
 
 [source,bash]
 ----
@@ -121,29 +128,132 @@ Those scripts will discover every models of the applications that are listed in 
 
 # Create the migration files
 (VirtTest)[user@localhost PROJECT_FOLDER] $ python ./manage.py makemigrations cooking
-
+No changes detected in app 'cooking'
 # Make the migration
-$ ENV/bin/python3 ./manage.py makemigrations cooking
+(VirtTest)[user@localhost PROJECT_FOLDER] $ python ./manage.py migrate
+Operations to perform:
+  Apply all migrations: sessions, auth, contenttypes, cooking, admin
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying cooking.0001_initial... OK
+  Applying cooking.0002_auto_20151211_0339... OK
+  Applying cooking.0003_auto_20151211_2241... OK
+  Applying sessions.0001_initial... OK
 ----
 
 === Load Test Data
 
 The test data are located in the *PROJECT_PATCH/cooking/fixtures* folder. +
-Django look after script in the fixtures folder in each module.
+Django look after script in the fixtures folders in each module.+
+These data will also be used in initialisation of the test environment.+
+The data files can be writen in json, xml and yaml.
 
 [source,bash]
 ----
-$ cd PROJECT_PATH
+(VirtTest)[user@localhost VirtTest] $ cd $PROJECT_PATH
 
 # Flush all data
-$ ENV/bin/python3 ./manage.py flush
+$ (VirtTest)[user@localhost PROJECT_FOLDER] $ python ./manage.py flush
+You have requested a flush of the database.
+This will IRREVERSIBLY DESTROY all data currently in the 'concurent_cooking_db' database,
+and return each table to an empty state.
+Are you sure you want to do this?
+
+    Type 'yes' to continue, or 'no' to cancel: yes
 
 # Load data
-$ ENV/bin/python3 ./manage.py loaddata 001_ingredient_test_data.json
-$ ENV/bin/python3 ./manage.py loaddata 002_recipe_test_data.json
-$ ENV/bin/python3 ./manage.py loaddata 003_ingredient_recipe_test_data.json
+$ (VirtTest)[user@localhost PROJECT_FOLDER] $ python ./manage.py loaddata 001_ingredient_test_data.json
+Installed 46 object(s) from 1 fixture(s)
+$ (VirtTest)[user@localhost PROJECT_FOLDER] $ python ./manage.py loaddata 002_recipe_test_data.json
+Installed 1 object(s) from 1 fixture(s)
+$ (VirtTest)[user@localhost PROJECT_FOLDER] $ python ./manage.py loaddata 003_ingredient_recipe_test_data.json
+Installed 6 object(s) from 1 fixture(s)
 
 ----
 
+== Users and permissions initialisation
+
+=== Create Django admin user
+
+To access the administration console of Django and manage users and group , you have to create an `admin` user.
+
+[source,bash]
+----
+$ (VirtTest)[user@localhost PROJECT_FOLDER] $ python ./manage.py createsuperuser
+Username (leave blank to use 'user'): admin
+Email address: admin@email.org
+Password:
+Password (again):
+Superuser created successfully.
+----
+
+=== Run the server and access to the administration console
+
+[Note]
+====
+The `runserver`command purpose is to provide a quick django server for development.+
+To use your code on a production server , you have to use apache https://modwsgi.readthedocs.org/en/develop/[mod_wsgi] (see xref:mod_wsgi[mod_wsgi section]).
+Other option are also available. (see https://docs.djangoproject.com/fr/1.9/howto/deployment/ [django doc])
+====
+
+[source,bash]
+----
+$ (VirtTest)[user@localhost PROJECT_FOLDER] $ python ./manage.py runserver
+Performing system checks...
+
+System check identified no issues (0 silenced).
+December 12, 2015 - 02:33:07
+Django version 1.9, using settings 'concurent_cooking.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+----
+
+Now, you can access the administration console at http://127.0.0.1:8000/admin/login/?next=/admin/. +
+You can log in , using the admin user and password.
+
+=== Add users, groups and permissions
+
+We are going to create 2 users (one for cooking , one for it), which belong to 2 groups containing different permissions.
+
+* Access to the http://127.0.0.1:8000/admin/login/?next=/admin/[administration console]
+* Click on `Add User`
+* Fill in the informations and click on `save`
+* Do the same for the second user.
+* Return to http://127.0.0.1:8000/admin/login/?next=/admin/[administration home page]
+* Click on 'Add Group'
+* Create the "it" group and give it all the "it" permission (Can change recipe , Can delete ingredient, ...)
+* Click on `save`
+* Do the same for the "cooking" group and give it all the "cooking" permissions
+* Return to http://127.0.0.1:8000/admin/login/?next=/admin/[administration home page]
+* Click on 'Modify User'
+* Click on the "it" user
+* Add the user in "it" group
+* Click on `save`
+* Do the same for the "cooking" user
+
+.We have now 3 users :
+* An "admin" user who can access the administration console and all the readable content.
+* An "it" user who cannot access the administration stuffs but who can update create and delete all the "it" objects.
+* A "cooking" user who cannot access the administration stuffs but who can update create and delete all the "cooking" objects.
+
+
+[[postgres_install]]
+== Install and configure PostGreSQL database
+
+[[mod_wsgi]]
+== Deployement using mod_wsgi
+
+Doc : https://docs.djangoproject.com/fr/1.9/howto/deployment/wsgi/modwsgi/[Django avec Apache et mod_wsgi]
 
 

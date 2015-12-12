@@ -164,6 +164,7 @@ The data files can be writen in json, xml and yaml.
 (VirtTest)[user@localhost VirtTest] $ cd $PROJECT_PATH
 
 # Flush all data
+# !!! If you flush the date , you have to recreate users and innitialise DB !!!
 $ (VirtTest)[user@localhost PROJECT_FOLDER] $ python ./manage.py flush
 You have requested a flush of the database.
 This will IRREVERSIBLY DESTROY all data currently in the 'concurent_cooking_db' database,
@@ -171,6 +172,7 @@ and return each table to an empty state.
 Are you sure you want to do this?
 
     Type 'yes' to continue, or 'no' to cancel: yes
+
 
 # Load data
 $ (VirtTest)[user@localhost PROJECT_FOLDER] $ python ./manage.py loaddata 001_ingredient_test_data.json

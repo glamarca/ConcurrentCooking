@@ -7,4 +7,100 @@
 
 {% block content %}
     <h1>{% trans 'It' %}</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Scala</div>
+                            <div class="panel-body">
+                                <div id="scala"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Java</div>
+                            <div class="panel-body">
+                                <div id="java"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Docker</div>
+                            <div class="panel-body">
+                                <div id="docker"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Atlassian</div>
+                            <div class="panel-body">
+                                <div id="atlassian"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Python</div>
+                            <div class="panel-body">
+                                <div id="python"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Red Hat</div>
+                            <div class="panel-body">
+                                <div id="redhat"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Clojure</div>
+                            <div class="panel-body">
+                                <div id="clojure"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Mongo DB</div>
+                            <div class="panel-body">
+                                <div id="mongodb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="application/javascript">
+        $('#scala').FeedEk({
+            FeedUrl : 'http://www.infoq.com/fr/feed/Play-Framework/news',
+            MaxCount : 5,
+            ShowDesc : true,
+            ShowPubDate:true,
+            DescCharacterLimit:100,
+            TitleLinkTarget:'_blank'
+        });
+    </script>
 {% endblock %}

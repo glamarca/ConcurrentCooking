@@ -1,0 +1,49 @@
+{% extends "cooking_layout.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load  enums %}
+
+{% block breadcrumb %}
+    /<a href="{% url 'cooking:cooking_index' %}">Cooking</a>
+    /<a href="{% url 'cooking:ingredients_index' %}">{% trans 'Ingredients' %}</a>
+    /<a href="#">{{ ingredient.name }}</a>
+{% endblock %}
+
+{% block content %}
+    <h1>{% if action == 'modify' %}{% trans 'Ingredient Modification' %}{% else %}{% trans 'New Ingredient' %}{% endif %}</h1>
+    <div class="container">
+        {% include 'messages.html' %}
+        <form action="{% url 'cooking:ingredient_add_modif' %}" id="ingredient_form" method="post">
+            {% csrf_token %}
+            {% if ingredient %}
+                <input type="hidden" name="id" value="{{ ingredient.id }}"/>
+            {% endif %}
+            <input type="hidden" value="{{ action }}" name="action"/>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="ingredient_name" class="control-label">{% trans 'Name' %}</label>
+                            <input type="text" class="form-control" id="ingredient_name" name="name" {% if ingredient %}value="{{ ingredient.name }}"{% endif %}/>
+                        </div>
+                        <div class="form-group">
+                            <label for="ingredient_type" class="control-label">{% trans 'Type' %}</label>
+                            <select id="ingredient_type" class="form-control" name="type">
+                                {% for key,value in ingredient_types.items %}
+                                    <option value="{{ key }}" {% if key == ingredient.type %}selected{% endif %}>{{ value }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4 text-center">
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-default" value="
+                                {% if action == 'modify' %}{% trans 'Update' %}{% else %}{% trans 'Add' %}{% endif %}"/>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+{% endblock %}

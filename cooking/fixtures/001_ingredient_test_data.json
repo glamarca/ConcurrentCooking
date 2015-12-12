@@ -1,0 +1,509 @@
+[
+    {
+        "pk": "1",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Sucre",
+            "type": "SG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "2",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Miel",
+            "type": "SG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "3",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Glucose",
+            "type": "SG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "4",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Cassonade",
+            "type": "SG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "5",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Brocolis",
+            "type": "VG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "6",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Asperge",
+            "type": "SG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "7",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Choux blanc",
+            "type": "VG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "8",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "radis",
+            "type": "VG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "9",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Oignons",
+            "type": "VG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "10",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Ail",
+            "type": "VG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "11",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Cannelle",
+            "type": "SP",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "12",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Poivre",
+            "type": "SP",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "13",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Sel",
+            "type": "SP",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "14",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Cumin",
+            "type": "SP",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "15",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Estragon",
+            "type": "SP",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    }
+    ,
+    {
+        "pk": "16",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Pâte feuilletée",
+            "type": "DA",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    },
+    {
+        "pk": "17",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Pâte brisée",
+            "type": "DA",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    },
+    {
+        "pk": "18",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Pâte sablée",
+            "type": "DA",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    },
+    {
+        "pk": "19",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Pâte levée",
+            "type": "DA",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "20",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Pâte à choux",
+            "type": "DA",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "21",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Lait",
+            "type": "MK",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "22",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Beurre",
+            "type": "MK",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "23",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Fromage blanc",
+            "type": "MK",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "24",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Yoghourt",
+            "type": "MK",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "25",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Chèvre frais",
+            "type": "MK",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "26",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Crème",
+            "type": "MK",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "27",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Pomme",
+            "type": "FT",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "28",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Poire",
+            "type": "FT",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "29",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Orange",
+            "type": "FT",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "30",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Figue",
+            "type": "FT",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "31",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Jack",
+            "type": "FT",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "32",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Fraise",
+            "type": "FT",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "33",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Froment",
+            "type": "CL",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "34",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Seigle",
+            "type": "CL",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "35",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Farine Seigle",
+            "type": "CL",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "36",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Farine Froment",
+            "type": "CL",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "37",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Orge",
+            "type": "CL",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "38",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Blé",
+            "type": "CL",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "39",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Oeuf",
+            "type": "EG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "40",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Oeuf de caille",
+            "type": "EG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "41",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Oeuf d'oie",
+            "type": "EG",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "42",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Amandes",
+            "type": "DF",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "43",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Amandes effilées",
+            "type": "DF",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "44",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Noix",
+            "type": "DF",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "45",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Noisettes",
+            "type": "DF",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    } ,
+    {
+        "pk": "46",
+        "model": "cooking.ingredient",
+        "fields": {
+            "name": "Raisins secs",
+            "type": "DF",
+            "user_mod": "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    }
+]

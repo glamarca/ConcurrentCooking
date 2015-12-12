@@ -4,7 +4,9 @@ from django.utils import timezone
 
 
 class Recipe(models.Model):
-
+    """
+    Recipe model
+    """
     name = models.CharField(default='name',max_length=100,unique=True,null=False)
     global_time=models.IntegerField(null=True,validators=[MinValueValidator(1),MaxValueValidator(500)])
     preparation_time=models.IntegerField(null=True,validators=[MinValueValidator(1),MaxValueValidator(500)])

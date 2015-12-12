@@ -1,0 +1,18 @@
+[
+    {
+        "pk": "1",
+        "model": "cooking.recipe",
+        "fields": {
+            "name": "Apfelstrudel",
+            "description": "Roulade aux pommes viennoise",
+            "process": "- Préchauffez le four à 180 °\n-Etalez la pâte sur un plan fariné\n-Badijoner d'un peu d'huile et saupoudrer une fine couche de chapelure\n-Raper les pommes sur la surface jusqu'à 1 cm du bord\n-Saupoudrer de canelle , du sucre , de raisin et d'amandes\n-Rouler la pâte en serrant bien\n-Badijooner d'un mélange jaune d'oauf/miel/eau\n-Placer sur une plaque allant au four et enfourner pour 30 min\nServir tiède saupoudré de sucre glace ou accompagné d'une crème anglaise ou d'une boule de glace",
+            "difficulty" : "1",
+            "costs" : "1",
+            "preparation_time" : "15",
+            "global_time" : "45",
+            "user_mod" : "user_test",
+            "created": "2015-12-11T16:00:49.238Z",
+            "modified": "2015-12-11T16:00:49.238Z"
+        }
+    }
+]

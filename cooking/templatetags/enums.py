@@ -1,3 +1,6 @@
+"""
+TemplateTags to use the enums in template
+"""
 from django import template
 from cooking.references.Enums import INGREDIENT_TYPES,MEASUREMENT
 from django.utils.translation import ugettext as _

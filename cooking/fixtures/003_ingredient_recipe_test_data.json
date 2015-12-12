@@ -1,0 +1,62 @@
+[
+    {
+        "pk": "1",
+        "model": "cooking.ingredientrecipe",
+        "fields": {
+            "recipe": "1",
+            "ingredient": "1",
+            "quantity": "300",
+            "measurement": "GR"
+        }
+    } ,
+    {
+        "pk": "2",
+        "model": "cooking.ingredientrecipe",
+        "fields": {
+            "recipe": "1",
+            "ingredient": "11",
+            "quantity": "2",
+            "measurement": "PI"
+        }
+    } ,
+    {
+        "pk": "3",
+        "model": "cooking.ingredientrecipe",
+        "fields": {
+            "recipe": "1",
+            "ingredient": "16",
+            "quantity": "1",
+            "measurement": "PC"
+        }
+    } ,
+    {
+        "pk": "4",
+        "model": "cooking.ingredientrecipe",
+        "fields": {
+            "recipe": "1",
+            "ingredient": "27",
+            "quantity": "6",
+            "measurement": "PC"
+        }
+    } ,
+    {
+        "pk": "5",
+        "model": "cooking.ingredientrecipe",
+        "fields": {
+            "recipe": "1",
+            "ingredient": "43",
+            "quantity": "25",
+            "measurement": "GR"
+        }
+    } ,
+    {
+        "pk": "6",
+        "model": "cooking.ingredientrecipe",
+        "fields": {
+            "recipe": "1",
+            "ingredient": "46",
+            "quantity": "25",
+            "measurement": "GR"
+        }
+    }
+]

@@ -1,3 +1,6 @@
+"""
+All the enumerations , used as choice in model.
+"""
 __author__ = 'sarace'
 
 KILO='KG'
@@ -33,8 +36,12 @@ MILKY='MK'
 SUGAR='SG'
 OIL='OL'
 OTHER='OT'
+FAT='FA'
+EGGS="EG"
+DOUGH="DA"
+DRIED_FRUIT="DF"
 INGREDIENT_TYPES=(
-    (VEGETABLE,'VEGETABLE'),
+    (VEGETABLE,'Vegetable'),
     (MEAT,'Meat'),
     (FRUIT,'Fruit'),
     (CEREAL,'Cereal'),
@@ -42,5 +49,9 @@ INGREDIENT_TYPES=(
     (MILKY,'Milky'),
     (SUGAR,'Sugar'),
     (OIL,'Oil'),
-    (OTHER,'Other')
+    (OTHER,'Other'),
+    (FAT,'Fat'),
+    (EGGS,'Eggs'),
+    (DOUGH,'Dough'),
+    (DRIED_FRUIT,'Dried fruit')
 )

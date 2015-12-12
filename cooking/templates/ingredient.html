@@ -10,52 +10,48 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ recipe.name }}</h1>
-    <p>{{ recipe.description }}</p>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-6 text-right" style="padding-right: 50px;padding-bottom: 10px">
+            {% if perms.cooking.change_ingredient %}
+                <a href="{% url 'cooking:ingredient_form' ingredient.id %}" class="btn btn-default"
+                   id="update_ingredient_id">
+                    <span class=" glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </a>
+            {% endif %}
+            {% if perms.cooking.delete_ingredient %}
+                <a href="{% url 'cooking:ingredient_delete' ingredient.id %}"
+                   class="btn btn-default" id="delete_ingredient_id">
+                    <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+            {% endif %}
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">{% trans 'Infos' %}</div>
+                    <div class="panel-body">
+                        <h1>{{ ingredient.name }}</h1>
+
+                        <p>{{ ingredient.type|get_ingredient_type }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 text-center">
             <div class="panel panel-default">
-                <div class="panel-heading">{% trans 'Ingredients' %}</div>
+                <div class="panel-heading">{% trans 'Recipes' %}</div>
                 <div class="panel-body">
-                    {% if ingredients_recipe %}
+                    {% if recipes %}
                         <ul class="list-group">
-                            {% for ir in ingredients_recipes %}
+                            {% for ir in recipes %}
                                 <li class="list-group-item">
-                                    <span class="badge">{{ ir.quantity }} {{ ir.measurement|get_measure }}</span>
-                                    <a href="#">{{ ingredient.name }}</a>
+                                    <a href="{% url 'cooking:recipe_details' ir.recipe.id %}">{{ ir.recipe.name }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
                     {% endif %}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">{% trans 'Infos' %}</div>
-                <div class="panel-body">
-                    <div class="col-md-8 col-md-offset-2">
-                        <ul class="list-group">
-                            <li>{% trans 'People' %} : {{ recipe.num_people }} min</li>
-                            <li>{% trans 'Difficulty' %} : {{ recipe.difficulty }}/5</li>
-                            <li>{% trans 'Costs' %} : {{ recipe.costs }}/5</li>
-                            <li>{% trans 'Total Time' %} : {{ recipe.global_time }} min</li>
-                            <li>{% trans 'Preparartion Time' %} : {{ recipe.preparation_time }} min</li>
-                            <li>{% trans 'Waiting Time' %} : {{ recipe.waiting_time }} min</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">{% trans 'Process' %}</div>
-                <div class="panel-body">
-                    <div class="col-md-8 col-md-offset-2">
-                        <p>{{ recipe.process }}</p>
-                    </div>
                 </div>
             </div>
         </div>

@@ -1,3 +1,149 @@
 = Concurent Cooking
 
-This application uses https://www.python.org/[Python 3.4], https://www.djangoproject.com/[Django 1.9], http://www.postgresql.org/[PostgreSQL 9.4] and http://getbootstrap.com/[Bootstrap]. +
+This application uses https://www.python.org/[Python 3.4], https://www.djangoproject.com/[Django 1.9], http://www.postgresql.org/[PostgreSQL 9.4] and http://getbootstrap.com/[Bootstrap].
+
+This application is made to manage Cooking and It stuffs. +
+The Cooking side contains recipes, ingredients,techniques management and consulting.
+The it side contain form the moment only a bunch of RSS feed
+
+This is an ALPHA version, the remaining jobs are listed in the issues of this https://github.com/glamarca/ConcurrentCooking/issues[github repository].
+
+[Note]
+====
+All the following bash command are made on https://getfedora.org/[Fedora]. +
+`dnf` is used as package management (>=Fedora 22) +
+On other https://access.redhat.com/products/red-hat-enterprise-linux/[RHEL] distribution (https://www.centos.org/[CentOS],< Fedora 22,...) use `yum` +
+On https://www.debian.org/[Debian] distribution (https://www.debian.org/[Debian Linux], http://www.ubuntu.com/[Ubuntu], http://www.linuxmint.com/[LinuxMint],...) use `apt-get`
+====
+
+== Creation and configuration of the Python VirtualEnv
+
+[Note]
+====
+We assume that python3 and pip3 is installed.
+====
+
+To provide isolation between incompatible version of python, we must create a python virtual environment , and run our code inside this environment. We also have to configure this environment.
+
+=== Install virtualenv
+
+[source,bash]
+----
+$ sudo pip3 install virtualenv
+----
+
+=== Create new virtual environment
+
+[source,bash]
+----
+$ virtualenv -p /path/to/python3_bin ENV
+# In most of the cases , python3 lib is located to /usr/bin/python3
+----
+
+`ENV` is the folder where you want to create the virtual environment
+
+=== Activate the virtual environment
+
+If you activate a virtual environment , it change the `$PATH` variable , the shell will first look into `ENV/bin` folder. +
+If you use `python3` command in the shell , it will use yhe python3 binary located in `ENV/bin` folder.
+
+[source,bash]
+----
+$ cd ENV
+$ source ./bin/activate
+
+# Ex:
+(VirtTest)[user@localhost VirtTest] $ python --version
+Python 3.4.2
+(VirtTest)[user@localhost VirtTest] $ pip --version
+pip 7.1.2 from site-packages (python 3.4)
+----
+
+[Note]
+====
+From here whe assume that the virtualenv will be activated and used.
+So, don't forget to activate the `ENV` before executing commands
+====
+
+=== Install Django in the virtual environment
+
+[source,bash]
+----
+(VirtTest)[user@localhost VirtTest] $ pip install django
+Collecting django
+  Using cached Django-1.9-py2.py3-none-any.whl
+Installing collected packages: django
+Successfully installed django-1.9
+----
+
+== Clone the project
+
+Create a folder where to store the project.
+Clone the project inside the directory.
+
+[source,bash]
+----
+(VirtTest)[user@localhost VirtTest] $ mkdir PROJECT_PATH
+(VirtTest)[user@localhost VirtTest] $ cd PROJECT_PATH
+(VirtTest)[user@localhost VirtTest] $ git clone https://github.com/glamarca/ConcurrentCooking.git ./
+Clonage dans '.'...
+remote: Counting objects: 180, done.
+remote: Compressing objects: 100% (131/131), done.
+remote: Total 180 (delta 37), reused 177 (delta 34), pack-reused 0
+Réception d'objets: 100% (180/180), 371.51 KiB | 0 bytes/s, fait.
+Résolution des deltas: 100% (37/37), fait.
+Vérification de la connectivité... fait.
+----
+
+=== Initialisation of the project
+
+
+=== Add an Admin user to Django
+
+This user will be used to access the administration module and managing group and users.
+
+[source,bash]
+----
+(VirtTest)[user@localhost VirtTest] $ cd $PROJECT_PATH
+(VirtTest)[user@localhost PROJECT_FOLDER] $ python ./admin.py createsuperuser
+----
+
+== Database initialisation and Test data loading
+
+We are going to use the `makemigration` and `migrate` command from `manage.py` to initialise the database with the default models (auth,admin,...) and the models written int the applications. +
+Those scripts will discover every models of the applications that are listed in `INSTALLED_APPS` from the `settings.py`
+
+=== Initialise DB models
+
+[source,bash]
+----
+(VirtTest)[user@localhost VirtTest] $ cd $PROJECT_PATH
+
+# Create the migration files
+(VirtTest)[user@localhost PROJECT_FOLDER] $ python ./manage.py makemigrations cooking
+
+# Make the migration
+$ ENV/bin/python3 ./manage.py makemigrations cooking
+----
+
+=== Load Test Data
+
+The test data are located in the *PROJECT_PATCH/cooking/fixtures* folder. +
+Django look after script in the fixtures folder in each module.
+
+[source,bash]
+----
+$ cd PROJECT_PATH
+
+# Flush all data
+$ ENV/bin/python3 ./manage.py flush
+
+# Load data
+$ ENV/bin/python3 ./manage.py loaddata 001_ingredient_test_data.json
+$ ENV/bin/python3 ./manage.py loaddata 002_recipe_test_data.json
+$ ENV/bin/python3 ./manage.py loaddata 003_ingredient_recipe_test_data.json
+
+----
+
+
+

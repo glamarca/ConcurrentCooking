@@ -1,10 +1,83 @@
 {% extends "cooking_layout.html" %}
 {% load i18n %}
 {% load staticfiles %}
+{% load enums %}
 
 {% block breadcrumb %}
     /<a href="{% url 'cooking:cooking_index' %}">Cooking</a>/<a href="#">{% trans 'Ingredients' %}</a>
 {% endblock %}
 
 {% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading">{% trans 'Search' %}</div>
+        <div class="panel panel-body">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <form class="form-inline" action="{% url 'cooking:ingredient_search' %}" id="search_ingredient_form"
+                      method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search_ingredient_id" name="ingredient_search"/>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default form-control" id="submit_search_id">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    {% if perms.cooking.add_ingredient %}
+                        <div class="form-group">
+                            <a href="{% url 'cooking:ingredient_form' '' %}" class="btn btn btn-default form-control"
+                               id="add_ingredient_id">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+    {% include "messages.html" %}
+    {% if ingredients %}
+        <div class="panel panel-default">
+            <div class="panel-heading">{% trans 'Results' %}</div>
+            <div class="panel panel-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>{% trans 'Name' %}</th>
+                        <th>{% trans 'Type' %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for ingredient in ingredients %}
+                        <tr>
+                            <td><a href="{% url 'cooking:ingredient_details' ingredient.id %}">{{ ingredient.name }}</a></td>
+                            <td>{{ ingredient.type|get_ingredient_type }}</td>
+                            {% if perms.cooking.delete_ingredient %}
+                                <td width="5%">
+                                    <a href="{% url 'cooking:ingredient_delete' ingredient.id %}"
+                                       class="btn btn-sm" id="delete_ingredient_id">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+    <div class="panel panel-default" style="margin: 5px">
+        <div class="panel-heading">{% trans 'Latest Ingredients' %}</div>
+        <div class="panel-body">
+            {% if latest_ingredients %}
+                <ul class="list-group">
+                    {% for ingredient in latest_ingredients %}
+                        <li class="list-group-item"><a href="{% url 'cooking:ingredient_details' ingredient.id %}">{{ ingredient.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

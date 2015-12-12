@@ -4,7 +4,11 @@ from cooking.models.Ingredient import Ingredient
 from cooking.models.Recipe import Recipe
 from cooking.references.Enums import MEASUREMENT,GRAM
 
+
 class IngredientRecipe(models.Model):
+    """
+    IngredientRecipe model : link between a recipe and an ingredient
+    """
 
     recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE)
     ingredient = models.ForeignKey(Ingredient,on_delete=models.CASCADE)

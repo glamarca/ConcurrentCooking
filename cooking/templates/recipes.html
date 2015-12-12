@@ -15,7 +15,7 @@
                       method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        <input type="text" class="form-control" id="search_recipe_id" name="recipe_search" required/>
+                        <input type="text" class="form-control" id="search_recipe_id" name="recipe_search"/>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-default form-control" id="submit_search_id">
@@ -55,8 +55,8 @@
                             {% if perms.cooking.delete_recipe %}
                                 <td width="5%">
                                     <a href="{% url 'cooking:recipe_delete' recipe.id %}"
-                                       class="btn btn btn-sm form-control" id="delete_recipe_id">
-                                        <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                       class="btn btn-sm" id="delete_recipe_id">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </a>
                                 </td>
                             {% endif %}
@@ -71,9 +71,9 @@
         <div class="panel-heading">{% trans 'Latest Recipes' %}</div>
         <div class="panel-body">
             {% if latest_recipes %}
-                <ul>
+                <ul class="list-group">
                     {% for recipe in latest_recipes %}
-                        <li><a href="{% url 'cooking:recipe_details' recipe.id %}">{{ recipe.name }}</a></li>
+                        <li class="list-group-item"><a href="{% url 'cooking:recipe_details' recipe.id %}">{{ recipe.name }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}

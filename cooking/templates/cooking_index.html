@@ -25,9 +25,9 @@
                         <div class="panel-heading">{% trans 'Latest Recipes' %}</div>
                         <div class="panel-body">
                             {% if latest_recipes %}
-                                <ul>
+                                <ul class="list-group">
                                 {% for recipe in latest_recipes %}
-                                    <li><a href="{% url 'cooking:recipe_details' recipe.id %}">{{ recipe.name }}</a></li>
+                                    <li class="list-group-item" ><a href="{% url 'cooking:recipe_details' recipe.id %}">{{ recipe.name }}</a></li>
                                 {% endfor %}
                                 </ul>
                             {% endif %}
@@ -72,9 +72,9 @@
                         <div class="panel-body">
                             <div class="panel-body">
                                 {% if latest_ingredients %}
-                                    <ul>
+                                    <ul class="list-group">
                                         {% for ingredient in latest_ingredients %}
-                                            <li><a href="{% url 'cooking:ingredient' ingredient.id %}">{{ ingredient.name }}</a></li>
+                                            <li class="list-group-item"><a href="{% url 'cooking:ingredient_details' ingredient.id %}">{{ ingredient.name }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 {% endif %}

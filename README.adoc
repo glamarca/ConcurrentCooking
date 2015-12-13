@@ -417,11 +417,11 @@ Any classes inplementing `django.test.TestCase` and any methods starting with `t
 ==== launch_test.py
 
 To avoid the problem with the discover of test classes , we will use the `launch_test.py` script to launch the test. +
-You have to add new test classes in the `TESTS_CLASSES` variable in `launch_test.py` file.
+You have to add new test classes in the `UNIT_TESTS_CLASSES` variable in `launch_test.py` file.
 
 [source,python]
 ----
-TESTS_CLASSES = [
+UNIT_TESTS_CLASSES = [
     'cooking.tests.IngredientTests',
     'cooking.tests.RecipeTests',
     'cooking.tests.IngredientRecipeTests',
@@ -429,10 +429,11 @@ TESTS_CLASSES = [
 ----
 
 To launch the test , execute the following command
+The script as to be used like this : `[user@localhost PROJECT_FOLDER] $ python launch_tests.py -t unit`
 
 [source,bash]
 ----
-(VirtTest)[user@localhost PROJECT_FOLDER] $ launch_tests.py
+(VirtTest)[user@localhost PROJECT_FOLDER] $ python launch_tests.py -t unit
 Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
 Operations to perform:
   Synchronize unmigrated apps: messages, staticfiles
@@ -499,6 +500,138 @@ Successfully built selenium
 Installing collected packages: selenium
 Successfully installed selenium-2.48.0
 ----
+
+Selenium test are written like unittest , and run by using the `manage.py test` command. So, you can load data if you want to be used in selenium tests. +
+The firsts tests written in `SeleniumHealtTest.py` are simple healt tetst that test the common pages and reaction of the application. Selenium is configured to use FireFox drive with the common user profile (located in `~/.mozilla/firefox/PROFILE_FOLDER on Linux machines) +
+In this case we use a driver which will actually launch a firefox session. For production mode , on a server without GUI, we will use another driver that do "as if " a GUI is present.
+
+As for the unit tests , we will use a custom script to launch the tests.
+
+==== launch_test.py
+
+Configure the `launch_test.py`by adding the selenium test class name in `SELENIUM_TESTS_CLASSES` variable.
+
+[source,python]
+----
+# Selenium tests classes
+SELENIUM_TESTS_CLASSES = [
+    'cooking.tests.SeleniumHealtTest'
+]
+----
+
+The script as to be launch like this : `(VirtTest)[user@localhost PROJECT_FOLDER] $ python launch_test.py -t selenium`
+
+[source,bash]
+----
+(VirtTest)[user@localhost PROJECT_FOLDER] $ python launch_tests.py -t selenium
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Operations to perform:
+  Synchronize unmigrated apps: staticfiles, django_jenkins, messages
+  Apply all migrations: admin, auth, cooking, sessions, contenttypes
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying cooking.0001_initial... OK
+  Applying cooking.0002_auto_20151211_0339... OK
+  Applying cooking.0003_auto_20151211_2241... OK
+  Applying sessions.0001_initial... OK
+test_connexion_page (cooking.tests.SeleniumHealthTest.SeleniumHealtTest) ... ok
+test_invalid_login (cooking.tests.SeleniumHealthTest.SeleniumHealtTest) ... ok
+test_valid_non_admin_login (cooking.tests.SeleniumHealthTest.SeleniumHealtTest) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 15.488s
+
+OK
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Storing coverage info...
+Done
+
+----
+
+=== Launch all test
+
+[source,bash]
+----
+(VirtTest)[user@localhost PROJECT_FOLDER] $ python launch_tests.py -a
+
+#See help :
+(VirtTest)[user@localhost PROJECT_FOLDER] $ python launch_tests.py -h
+launch_test.py <OPTIONS> [ARGS]
+OPTIONS :
+ -h : Show this message
+ -t <TYPE> : Launch the tests of a specific type
+     TYPE :
+      selenium : Selenium tests
+      unit : Unit tests tests
+ -a : Run testst of all types
+----
+
+=== Integration with Jenkins
+
+[NOTE]
+====
+We assume that you have a jenkins server up and running. +
+If not , see the documentation on https://jenkins-ci.org/[Site].
+====
+
+We must automate all the tests ,so we can launch them after each commit ,an test for regression. +
+For that we are going to use https://jenkins-ci.org/[Jenkins] and the https://github.com/kmmbvnr/django-jenkins[django_jenkins module]. +
+
+The `django_jenkins` module will add report for tests. +
+We also have to install coverage to create reports.
+
+==== Install django-jenkins
+
+[source,bash]
+----
+# Install django-jenkins
+(VirtTest)[user@localhost PROJECT_FOLDER] $ pip3 install django-jenkins
+
+#Install coverage
+(VirtTest)[user@localhost PROJECT_FOLDER] $ pip3 install coverage
+
+==== Enable django-jenkins module
+
+Add `django-jenkins` to `INSTALLED_APP` in `settings.py`
+
+[source,python]
+----
+INSTALLED_APPS = [
+     ...
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django_jenkins',
+    ...
+]
+----
+
+*From now we will run the tests using `mananage.py jenkins` , the report are saved in the `report` folder in the project folder.*
+
+----
+
+==== Configure jenkins
+
+.Jenkins as to contain the following plugins :
+* https://wiki.jenkins-ci.org/display/JENKINS/Cobertura+Plugin[Cobertura]
+* https://wiki.jenkins-ci.org/display/JENKINS/Violations[Violations]
+* https://wiki.jenkins-ci.org/display/JENKINS/Python+Plugin[Python Plugin]
+* https://wiki.jenkins-ci.org/display/JENKINS/ShiningPanda+Plugin[ShiningPanda]
+* https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin[Git]
+
 
 [[mod_wsgi]]
 == Deployement using mod_wsgi

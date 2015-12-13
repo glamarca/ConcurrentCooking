@@ -1,5 +1,4 @@
 import os
-import selenium
 from selenium.common.exceptions import NoSuchElementException
 from concurent_cooking.settings import BASE_DIR
 from datetime import date

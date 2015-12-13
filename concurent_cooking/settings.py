@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_jenkins',
     'cooking.apps.CookingConfig',
     'authentication.apps.AuthenticationConfig',
     'it.apps.ItConfig',
@@ -136,3 +137,5 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = "/"
 
 STATIC_ROOT = ''
+
+JENKINS_TASKS = []

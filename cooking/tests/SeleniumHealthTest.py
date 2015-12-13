@@ -14,7 +14,7 @@ from selenium.webdriver.common.keys import Keys
 
 class SeleniumHealtTest(StaticLiveServerTestCase):
     SCREEN_SHOT_FOLDER = os.path.join(BASE_DIR, "selenium_ide_test_cases/sceenshots")
-    FIREFOX_PROFILE_PATH = os.path.expanduser("~/.mozilla/firefox/o1igxqtg.default")
+    FIREFOX_PROFILE_PATH = os.path.join(BASE_DIR, "selenium_ide_test_cases/firefox_profile")
 
     def take_screen_shot(self, name):
         today = date.today().strftime("%d_%m_%y")

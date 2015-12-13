@@ -253,7 +253,7 @@ First we need to install postgreSQL on the system.
 ----
 # Install with dnf
 # Dev package has to be installed to work with the python driver
-(VirtTest)[user@localhost PROJECT_FOLDER] $ sudo dnf install postgesql-server.x86_64 python3-devel.x86_64 postgresql-devel.x86_64 postgresql-plpython.x86_64
+(VirtTest)[user@localhost PROJECT_FOLDER] $ sudo dnf install postgesql-server.x86_64 python3-devel.x86_64 postgresql-devel.x86_64 postgresql-plpython3.x86_64
 
 # Initialisation
 (VirtTest)[user@localhost PROJECT_FOLDER] $ sudo postgresql-setup initdb

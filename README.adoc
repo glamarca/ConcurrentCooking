@@ -478,6 +478,27 @@ Destroying test database for alias 'default' ('file:memorydb_default?mode=memory
 
 === Selenium Tests
 
+http://docs.seleniumhq.org/[Selenium] is a web browser automating tools : you can reproduce any action of a user on a web browser. +
+It can be used to test webapplication reaction on user action.
+
+The easiest way to create test case with selenium is to use the http://docs.seleniumhq.org/projects/ide/[Fiferfox Plugin] to record the user actions, and export them into python code.
+Django provide a `LiveServerTestCase` class to interact with selenium.
+
+==== Install selenium
+
+[source,bash]
+----
+(VirtTest)[user@localhost PROJECT_FOLDER] $ pip install selenium
+Collecting selenium
+  Downloading selenium-2.48.0.tar.gz (805kB)
+    100% |████████████████████████████████| 806kB 781kB/s
+Building wheels for collected packages: selenium
+  Running setup.py bdist_wheel for selenium
+  Stored in directory: /home/user/.cache/pip/wheels/e1/34/09/4fa6eb65a3e9fded7ce3ee306ef8d398b09f35db4438567b23
+Successfully built selenium
+Installing collected packages: selenium
+Successfully installed selenium-2.48.0
+----
 
 [[mod_wsgi]]
 == Deployement using mod_wsgi

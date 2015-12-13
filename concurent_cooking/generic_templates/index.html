@@ -12,7 +12,7 @@
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked">
                             <li role="presentation"><a href="{% url 'cooking:cooking_index' %}"
-                                                       class="list-group-item">{% trans 'Here you can find recipe, techniques, ingredients ...' %}</a>
+                                                       class="list-group-item" id="cooking_link">{% trans 'Here you can find recipe, techniques, ingredients ...' %}</a>
                             </li>
                         </ul>
                     </div>
@@ -28,7 +28,7 @@
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked">
                             <li role="presentation"><a href="{% url 'it:it_index' %}"
-                                                       class="list-group-item">{% trans 'Here lets see developpement and devops things' %}</a>
+                                                       class="list-group-item" id="it_link">{% trans 'Here lets see developpement and devops things' %}</a>
                             </li>
                         </ul>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked">
                                 <li role="presentation"><a href="/admin"
-                                                           class="list-group-item">{% trans 'Administrate the application' %}</a>
+                                                           class="list-group-item" id="admin_link">{% trans 'Administrate the application' %}</a>
                                 </li>
                             </ul>
                         </div>

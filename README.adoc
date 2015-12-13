@@ -100,17 +100,6 @@ Vérification de la connectivité... fait.
 
 === Initialisation of the project
 
-
-=== Add an Admin user to Django
-
-This user will be used to access the administration module and managing group and users.
-
-[source,bash]
-----
-(VirtTest)[user@localhost VirtTest] $ cd $PROJECT_PATH
-(VirtTest)[user@localhost PROJECT_FOLDER] $ python ./admin.py createsuperuser
-----
-
 == Database initialisation and Presentation/Test data loading
 
 We are going to use the `makemigration` and `migrate` command from `manage.py` to initialise the database with the default models (auth,admin,...) and the models written int the applications. +
@@ -494,5 +483,3 @@ Destroying test database for alias 'default' ('file:memorydb_default?mode=memory
 == Deployement using mod_wsgi
 
 Doc : https://docs.djangoproject.com/fr/1.9/howto/deployment/wsgi/modwsgi/[Django avec Apache et mod_wsgi]
-
-

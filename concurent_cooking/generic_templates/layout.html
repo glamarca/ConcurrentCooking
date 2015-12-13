@@ -23,7 +23,7 @@
         </div>
         {% if user.is_authenticated %}
             <div class="navbar-right" style="margin-right: 10px">
-                <a href="{% url 'authentication:logout' %}" class="navbar-brand">{% trans 'Logout' %}</a>
+                <a href="{% url 'authentication:logout' %}" class="navbar-brand" id="logout_btn">{% trans 'Logout' %}</a>
             </div>
         {% else %}
         {% endif %}

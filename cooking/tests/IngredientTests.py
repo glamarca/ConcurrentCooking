@@ -2,22 +2,18 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase
 from django.utils import timezone
 from cooking.models.Ingredient import Ingredient
+from cooking.tests import util
 
 
 class IngredientMethodTests(TestCase):
 
-    def create_test_ingredient(self):
-        now = timezone.now()
-        ingredient = Ingredient(name='Mandarine', type='FT', created=now, modified=now, user_mod="cooking_user_test")
-        ingredient.save()
-        return ingredient
 
     def test_create_ingredient(self):
         """
         Create an new Ingredient , save it and check if it is well created.
         :return:
         """
-        ingredient = self.create_test_ingredient()
+        ingredient = util.create_test_ingredient()
         saved_ingredient = Ingredient.objects.get(name="Mandarine")
         self.assertTrue(saved_ingredient.name == ingredient.name)
         self.assertTrue(saved_ingredient.type == ingredient.type)
@@ -31,7 +27,7 @@ class IngredientMethodTests(TestCase):
         :param selfself:
         :return:
         """
-        ingredient = self.create_test_ingredient()
+        ingredient = util.create_test_ingredient()
         ingredientID = ingredient.id
         pastName = ingredient.name
         ingredient.name = 'Clementine'
@@ -47,7 +43,7 @@ class IngredientMethodTests(TestCase):
             Assert that a ObjectDoesNotExist exception is raised if you get the deleted ingredient
             :return:
             """
-            ingredient = self.create_test_ingredient()
+            ingredient = util.create_test_ingredient()
             ingredientId = ingredient.id
             ingredient.delete()
             Ingredient.objects.get(pk=ingredientId)
